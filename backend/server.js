@@ -1,48 +1,28 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const translatorRoutes = require('./routes/translatorRoutes');
 
 const app = express();
+
 const PORT = 5000;
+
+
 app.use(cors());
 app.use(express.json());
 
-app.post('/api/chat', async (req, res) => {
-    try{
-        const userPrompt = req.body.prompt;
 
-        const response = await axios.post('http://localhost:8000/translate', 
-            {
-                prompt: userPrompt
-            }
-        );
-        res.json({
-            reply: response.data.response
-        });
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
-
-app.post('/api/question-generator', async (req, res) => {
-    try{
-        const userPrompt = req.body.prompt;
-
-        const response = await axios.post('http://localhost:8000/question-generator', 
-            {
-                prompt: userPrompt
-            }
-        );
-        res.json({
-            reply: response.data.response
-        });
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
+app.use('/api/genai', translatorRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+});
+
+// Global error handlers to capture crashes and unhandled promise rejections
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });

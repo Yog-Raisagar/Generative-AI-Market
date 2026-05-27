@@ -14,12 +14,13 @@ function Translate() {
     if (!userPrompt.trim()) return;
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', {
+      const response = await axios.post('http://localhost:5000/api/genai', {
         prompt: userPrompt,
-        from: fromLang,
-        to: toLang,
+        fromlan: fromLang,
+        tolan: toLang,
       });
-      setTranslatedText(response.data.reply || 'No response');
+      console.log('Translation response:', response.data);
+      setTranslatedText(response.data.response.response || 'No response');
     } catch (error) {
       console.error('Error:', error);
       setTranslatedText('Error translating. See console.');
