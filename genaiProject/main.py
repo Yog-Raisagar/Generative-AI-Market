@@ -27,8 +27,8 @@ async def translate(user_prompt: UserPrompt):
         "response": response.text
     }
 
-@app.post("/code-assist")
-async def code_assist(user_prompt: UserPrompt):
+@app.post("/question-generator")
+async def question_generator(user_prompt: UserPrompt):
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=user_prompt.prompt
@@ -37,3 +37,4 @@ async def code_assist(user_prompt: UserPrompt):
     return {
         "response": response.text
     }
+

@@ -25,11 +25,11 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-app.post('/api/summarize', async (req, res) => {
+app.post('/api/question-generator', async (req, res) => {
     try{
         const userPrompt = req.body.prompt;
 
-        const response = await axios.post('http://localhost:8000/summarize', 
+        const response = await axios.post('http://localhost:8000/question-generator', 
             {
                 prompt: userPrompt
             }
