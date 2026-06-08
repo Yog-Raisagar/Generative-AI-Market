@@ -19,7 +19,7 @@ function Translate() {
         fromlan: fromLang,
         tolan: toLang,
       });
-      console.log('Translation response:', response.data);
+      
       setTranslatedText(response.data.response.response || 'No response');
     } catch (error) {
       console.error('Error:', error);
