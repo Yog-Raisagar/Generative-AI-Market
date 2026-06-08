@@ -17,10 +17,10 @@ export default function Home() {
       path: '/ai-chat',
     },
     {
-      title: 'Code Assistant',
-      description: 'Generate and debug code with AI assistance.',
+      title: 'Ai Chat-Bot',
+      description: 'General Queries and text Generative Ai',
       icon: '💻',
-      path: '/code-assistant',
+      path: '/chatbot',
     },
     {
       title: 'AI Summarizer',
